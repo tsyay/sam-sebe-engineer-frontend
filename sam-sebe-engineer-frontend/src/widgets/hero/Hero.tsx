@@ -3,7 +3,7 @@ import { Button } from "../../shared/ui/buttons";
 export const Hero = () => {
   return (
     <>
-      <div className="bg-[#2555BF] w-full h-screen my-[24px] rounded-[10px] px-[90px] flex flex-col gap-[12px] justify-end pb-[90px] ">
+      <div className="bg-[#2555BF] w-full h-[700px] my-[60px] rounded-[10px] px-[90px] flex flex-col gap-[12px] justify-end pb-[90px] ">
         <h1 className="text-white text-[128px] leading-[110px] font-bold">
           Сам <br /> Себе <br />
           Инженер

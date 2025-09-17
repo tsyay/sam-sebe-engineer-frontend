@@ -1,4 +1,4 @@
-import { Hero } from "../../widgets/hero";
+import { Hero } from "../../widgets";
 import { PageLayout } from "../../shared/layouts/PageLayout";
 export const HomePage = () => {
   return (

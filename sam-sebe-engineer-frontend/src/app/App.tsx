@@ -1,9 +1,15 @@
+import { BrowserRouter, Route, Routes } from "react-router";
 import { HomePage } from "../pages/home";
-
+import { Header } from "../widgets";
 function App() {
   return (
     <>
-      <HomePage/>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
