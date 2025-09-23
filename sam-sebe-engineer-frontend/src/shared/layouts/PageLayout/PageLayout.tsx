@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { Container } from '../../ui/Container';
+import { Container } from '../../ui';
 
 interface PageLayoutProps {
   children: ReactNode;
