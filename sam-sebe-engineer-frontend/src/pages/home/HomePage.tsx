@@ -1,4 +1,4 @@
-import { Hero, HowItWorks, Kits } from "../../widgets";
+import { Hero, HowItWorks, Kits, TargetAudience } from "../../widgets";
 import { PageLayout } from "../../shared/layouts/PageLayout";
 export const HomePage = () => {
   return (
@@ -9,6 +9,7 @@ export const HomePage = () => {
           <PageLayout.Section>
             <HowItWorks/>
             <Kits/>
+            <TargetAudience/>
           </PageLayout.Section>
         </PageLayout.Main>
       </PageLayout>
