@@ -21,7 +21,7 @@ export const QuestionCard = ({ question, answer }: QuestionCardProps) => {
         <p className="text-[32px] font-medium">{question}</p>
       </div>
       <div className={`${visability ? "flex" : "hidden"}`}>
-        <p className="text-[24px] leading-[24px] text-justify">{answer}</p>
+        <p className="text-[24px] leading-[24px] font-light text-justify">{answer}</p>
       </div>
     </div>
   );

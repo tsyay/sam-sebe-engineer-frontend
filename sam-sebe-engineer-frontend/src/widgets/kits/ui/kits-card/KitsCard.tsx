@@ -31,7 +31,7 @@ export const KitsCard = ({
     >
       {active && side == "right" && (
         <div className="flex-1 p-4 h-full rounded-[30px] flex items-center">
-          <p className=" text-justify font-medium text-[24px] leading-none ">
+          <p className=" text-justify ffont-light text-[24px] leading-none ">
             {description}
           </p>
         </div>
@@ -48,7 +48,7 @@ export const KitsCard = ({
 
       {active && side == "left" && (
         <div className="flex-1 p-4 h-full rounded-[30px] flex items-center">
-          <p className="text-justify font-medium text-[24px] leading-none ">
+          <p className="text-justify font-light text-[24px] leading-none ">
             {description}
           </p>
         </div>
