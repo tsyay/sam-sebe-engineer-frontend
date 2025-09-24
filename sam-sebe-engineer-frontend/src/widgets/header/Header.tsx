@@ -3,7 +3,7 @@ import logo from "../../../public/images/logo.png"
 
 export const Header = () => {
   return (
-    <div className="fixed top-2 left-0 right-0 px-2 z-50">
+    <div className="fixed top-2 left-0 right-0 px-2 z-50 drop-shadow-lg">
       <header className="w-full h-[60px] bg-white rounded-[30px]">
         <div className="w-full h-full flex flex-row justify-between items-center max-w-[1344px] mx-auto px-6">
           <div className="w-[318px] logo h-3/4 flex flex-row items-center leading-[16px]">

@@ -24,6 +24,7 @@ export const KitsCard = ({
       className={`
         rounded-[30px] bg-[#6AAE55] overflow-hidden 
         flex flex-row gap-3 items-center
+        drop-shadow-lg
         ${active ? "w-full" : "flex-1"}
         ${faded ? "scale-0 hidden " : "opacity-100 scale-100"}
       `}
