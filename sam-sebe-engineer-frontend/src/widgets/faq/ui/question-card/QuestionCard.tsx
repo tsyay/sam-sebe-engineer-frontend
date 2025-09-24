@@ -14,7 +14,7 @@ export const QuestionCard = ({ question, answer }: QuestionCardProps) => {
 
   return (
     <div
-      className="w-3/4 h-fit p-4 bg-white flex flex-col mx-auto rounded-[30px] drop-shadow-md"
+      className="w-3/4 h-fit p-4 bg-white flex flex-col mx-auto rounded-[30px] gap-3 drop-shadow-md"
       onClick={handleClick}
     >
       <div>
