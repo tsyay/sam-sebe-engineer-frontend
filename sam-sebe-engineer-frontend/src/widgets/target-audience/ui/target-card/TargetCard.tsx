@@ -13,7 +13,7 @@ export const TargetCard = ({
 }: TargetCardProps) => {
   return (
     <div
-      className={`${className} group relative flex flex-col items-center cursor-pointer`}
+      className={`${className} group relative flex flex-col items-center cursor-pointer text-[#343A40]`}
     >
       <div className="w-full h-[650px] overflow-hidden rounded-[30px] relative">
         <img
