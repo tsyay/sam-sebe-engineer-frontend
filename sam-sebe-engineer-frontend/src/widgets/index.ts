@@ -5,3 +5,5 @@ export { Kits } from "./kits";
 export { TargetAudience } from "./target-audience";
 export { FAQ } from "./faq";
 export { Footer } from "./footer";
+export { InstructionsList } from "./instructions-list";
+export { InstructionViewer } from "./instruction-viewer";

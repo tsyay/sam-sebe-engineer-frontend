@@ -1,0 +1,1 @@
+export { InstructionsListPage } from "./InstructionsListPage";

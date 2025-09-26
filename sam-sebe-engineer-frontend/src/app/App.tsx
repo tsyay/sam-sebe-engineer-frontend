@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router";
-import { HomePage, InstructionPage } from "../pages";
+import { HomePage, InstructionPage, InstructionsListPage } from "../pages";
 import { Footer, Header } from "../widgets";
 function App() {
   return (
@@ -8,9 +8,10 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/instruction/:id" element={<InstructionPage/>}/>
+          <Route path="/instructions" element={<InstructionsListPage />} />
+          <Route path="/instruction/:id" element={<InstructionPage />} />
         </Routes>
-        <Footer/>
+        <Footer />
       </BrowserRouter>
     </>
   );
