@@ -17,7 +17,7 @@ export const Button = ({
 }: ButtonProps) => {
   
   const baseStyles = `
-    px-8 py-4 rounded-lg font-bold text-base
+    px-8 py-4 rounded-[30px] font-bold text-base
     transition-all duration-200 active:scale-95
     disabled:opacity-50 disabled:cursor-not-allowed
   `;

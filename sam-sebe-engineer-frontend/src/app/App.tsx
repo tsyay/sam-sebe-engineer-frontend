@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router";
-import { HomePage } from "../pages/home";
+import { HomePage, InstructionPage } from "../pages";
 import { Footer, Header } from "../widgets";
 function App() {
   return (
@@ -8,6 +8,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/instruction/:id" element={<InstructionPage/>}/>
         </Routes>
         <Footer/>
       </BrowserRouter>
