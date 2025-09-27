@@ -1,5 +1,10 @@
 import { BrowserRouter, Route, Routes } from "react-router";
-import { HomePage, InstructionPage, InstructionsListPage } from "../pages";
+import {
+  AddInstructionPage,
+  HomePage,
+  InstructionPage,
+  InstructionsListPage,
+} from "../pages";
 import { Footer, Header } from "../widgets";
 function App() {
   return (
@@ -10,6 +15,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/instructions" element={<InstructionsListPage />} />
           <Route path="/instruction/:id" element={<InstructionPage />} />
+          <Route path="/instruction/add" element={<AddInstructionPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>
