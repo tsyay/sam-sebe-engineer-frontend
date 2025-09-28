@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import type { Instruction } from "../../../entities";
-import { getAllInstructions } from "../../instruction-viewer/api/InstructionsMockups";
-import { InstructionCard } from "./InstructionCard";
+import type { Instruction } from "../../entities";
+import { getAllInstructions } from "../../shared";
+import { InstructionCard } from "./ui/InstructionCard/InstructionCard";
 
 export const InstructionsList = () => {
   const [instructions, setInstructions] = useState<Instruction[]>([]);

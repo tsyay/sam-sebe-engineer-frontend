@@ -1,1 +1,1 @@
-export { InstructionsList } from "./InstructionsList";
+export { InstructionsList } from "../InstructionsList";

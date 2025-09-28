@@ -1,5 +1,5 @@
 import { Link } from "react-router"
-import type { Instruction } from "../../../entities"
+import type { Instruction } from "../../../../entities"
 
 interface InstructionCardProps {
     instruction: Instruction,
