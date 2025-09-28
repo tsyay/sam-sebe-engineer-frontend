@@ -7,3 +7,4 @@ export { FAQ } from "./faq";
 export { Footer } from "./footer";
 export { InstructionsList } from "./instructions-list";
 export { InstructionViewer } from "./instruction-viewer";
+export { ElectronicComponentViewer } from "./electrionic-component-viewer";

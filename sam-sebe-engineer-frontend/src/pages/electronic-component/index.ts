@@ -1,0 +1,1 @@
+export { ElectronicComponentPage } from "./ElectronicComponentPage";

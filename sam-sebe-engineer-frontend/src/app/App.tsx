@@ -4,6 +4,7 @@ import {
   HomePage,
   InstructionPage,
   InstructionsListPage,
+  ElectronicComponentPage
 } from "../pages";
 import { Footer, Header } from "../widgets";
 function App() {
@@ -14,8 +15,9 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/instructions" element={<InstructionsListPage />} />
-          <Route path="/instruction/:id" element={<InstructionPage />} />
-          <Route path="/instruction/add" element={<AddInstructionPage />} />
+          <Route path="/instructions/:id" element={<InstructionPage />} />
+          <Route path="/instructions/add" element={<AddInstructionPage />} />
+          <Route path="/components/:id" element={<ElectronicComponentPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>
