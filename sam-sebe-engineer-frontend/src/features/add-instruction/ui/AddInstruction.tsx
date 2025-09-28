@@ -61,7 +61,7 @@ export const AddInstruction = () => {
             {...register("description")}
             minRows={10}
             maxRows={10}
-            className="w-full bg-white rounded-[30px] p-4"
+            className="w-full bg-white rounded-[30px] p-4 drop-shadow-lg"
           />
         </div>
         <div className="w-full h-full flex-1">

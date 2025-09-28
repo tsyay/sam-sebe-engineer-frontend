@@ -25,8 +25,7 @@ export const FileInputWithPreview = ({ file, onFileChange }: FileInputWithPrevie
     <div className="w-full h-full">
       <label className="cursor-pointer w-full h-full bg-gray-200 flex items-center justify-center overflow-hidden rounded-[30px]">
         {preview ? (
-          <img src={preview} alt="Preview"   className="max-w-full max-h-full object-contain"
- />
+          <img src={preview} alt="Preview"   className="max-w-full max-h-full object-contain" />
         ) : (
           <svg
             xmlns="http://www.w3.org/2000/svg"
