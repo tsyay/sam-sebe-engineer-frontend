@@ -1,7 +1,7 @@
 import { Navigate, useParams } from "react-router";
 import { PageLayout } from "../../shared/layouts/PageLayout";
 import { ElectronicComponentViewer } from "../../widgets";
-import { getElectronicComponentById } from "../../shared/api/ElectrionicComponents";
+import { getElectronicComponentById } from "../../shared/api/ElectronicComponents";
 
 export const ElectronicComponentPage = () => {
   const params = useParams<{ id: string }>();
