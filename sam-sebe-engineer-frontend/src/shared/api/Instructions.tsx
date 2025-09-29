@@ -9,7 +9,7 @@ const instructions: Instruction[] = [
     description:
       "Пошаговое руководство по сборке детекторного радиоприёмника...",
     previewImage: image,
-    components: [1, 5, 7], // резистор, диод, кнопка
+    components: [1, 5, 7], 
     steps: [
       {
         stepId: 1,
@@ -26,7 +26,7 @@ const instructions: Instruction[] = [
     title: "Сборка мигающего светодиода",
     description: "Проект с использованием микросхемы NE555...",
     previewImage: image,
-    components: [1, 2, 3, 6], // резистор, конденсатор, светодиод, микроконтроллер
+    components: [1, 2, 3, 6], 
     steps: [
       {
         stepId: 1,
@@ -43,7 +43,7 @@ const instructions: Instruction[] = [
     title: "Сборка усилителя на транзисторе",
     description: "Простой аудиоусилитель на транзисторе BC547...",
     previewImage: image,
-    components: [2, 4, 10], // конденсатор, транзистор, пьезоизлучатель
+    components: [2, 4, 10], 
     steps: [
       {
         stepId: 1,
