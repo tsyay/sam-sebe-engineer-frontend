@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import logo from '../../../public/images/logo.png'
+import logo from '../../shared/assets/logo.png'
 
 export const Footer = () => {
   return (

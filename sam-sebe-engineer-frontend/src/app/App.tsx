@@ -4,24 +4,24 @@ import {
   HomePage,
   InstructionPage,
   InstructionsListPage,
-  ElectronicComponentPage
+  ElectronicComponentPage,
+  KitsPage,
 } from "../pages";
 import { Footer, Header } from "../widgets";
 function App() {
   return (
-    <>
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/instructions" element={<InstructionsListPage />} />
-          <Route path="/instructions/:id" element={<InstructionPage />} />
-          <Route path="/instructions/add" element={<AddInstructionPage />} />
-          <Route path="/components/:id" element={<ElectronicComponentPage />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/instructions" element={<InstructionsListPage />} />
+        <Route path="/instructions/:id" element={<InstructionPage />} />
+        <Route path="/instructions/add" element={<AddInstructionPage />} />
+        <Route path="/components/:id" element={<ElectronicComponentPage />} />
+        <Route path="/kits" element={<KitsPage />} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
   );
 }
 

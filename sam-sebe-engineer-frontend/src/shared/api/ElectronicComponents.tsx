@@ -10,7 +10,7 @@ const electronicComponents: ElectronicComponent[] = [
       + "Применяется для защиты компонентов от перегрузки, создания делителей напряжения и настройки рабочих режимов. "
       + "Пример: резистор используется для ограничения тока, подаваемого на светодиод, чтобы он не перегорел.",
     image: image,
-    backgroundColor: "bg-blue-100", // Светло-синий для пассивных компонентов
+    backgroundColor: "bg-amber-100",
   },
   {
     componentId: 2,
@@ -20,7 +20,7 @@ const electronicComponents: ElectronicComponent[] = [
       + "Используется для сглаживания напряжения в блоках питания, фильтрации помех в радиотехнике и в генераторах сигналов. "
       + "Пример: в зарядных устройствах конденсатор убирает перепады напряжения, делая питание стабильным.",
     image: image,
-    backgroundColor: "bg-green-100", // Светло-зеленый для накопителей энергии
+    backgroundColor: "bg-blue-100",
   },
   {
     componentId: 3,
@@ -30,7 +30,7 @@ const electronicComponents: ElectronicComponent[] = [
       + "Применяется как индикатор, подсветка или источник освещения. "
       + "Пример: в пульте телевизора используется инфракрасный светодиод для передачи сигнала, а в гирляндах — разноцветные светодиоды для декора.",
     image: image,
-    backgroundColor: "bg-yellow-100", // Светло-желтый для светоизлучающих компонентов
+    backgroundColor: "bg-red-100",
   },
   {
     componentId: 4,
@@ -40,7 +40,7 @@ const electronicComponents: ElectronicComponent[] = [
       + "Применяется в микросхемах, радиоприемниках, усилителях звука и компьютерах. "
       + "Пример: транзисторы в процессоре выполняют миллионы переключений в секунду, обрабатывая информацию.",
     image: image,
-    backgroundColor: "bg-purple-100", // Светло-фиолетовый для активных компонентов
+    backgroundColor: "bg-green-100",
   },
   {
     componentId: 5,
@@ -50,7 +50,7 @@ const electronicComponents: ElectronicComponent[] = [
       + "Используется для защиты цепей, выпрямления переменного тока в постоянный, а также в различных датчиках. "
       + "Пример: в зарядном устройстве для телефона диоды превращают переменный ток из розетки в постоянный.",
     image: image,
-    backgroundColor: "bg-orange-100", // Светло-оранжевый для выпрямительных компонентов
+    backgroundColor: "bg-purple-100",
   },
   {
     componentId: 6,
@@ -60,7 +60,7 @@ const electronicComponents: ElectronicComponent[] = [
       + "Применяется для управления роботами, бытовыми приборами, автомобилями и игрушками. "
       + "Пример: в Arduino микроконтроллер управляет датчиками, двигателями и дисплеями в различных проектах.",
     image: image,
-    backgroundColor: "bg-red-100", // Светло-красный для процессорных компонентов
+    backgroundColor: "bg-indigo-100",
   },
   {
     componentId: 7,
@@ -70,7 +70,7 @@ const electronicComponents: ElectronicComponent[] = [
       + "Используется для включения и выключения устройств, подачи управляющих сигналов. "
       + "Пример: кнопка используется в звонке, чтобы замыкать цепь и включать звук.",
     image: image,
-    backgroundColor: "bg-gray-100", // Светло-серый для механических компонентов
+    backgroundColor: "bg-pink-100",
   },
   {
     componentId: 8,
@@ -80,7 +80,7 @@ const electronicComponents: ElectronicComponent[] = [
       + "Применяется для настройки громкости, яркости или чувствительности устройств. "
       + "Пример: ручка регулировки громкости на колонке — это потенциометр.",
     image: image,
-    backgroundColor: "bg-indigo-100", // Светло-индиго для регулируемых компонентов
+    backgroundColor: "bg-yellow-100",
   },
   {
     componentId: 9,
@@ -90,7 +90,7 @@ const electronicComponents: ElectronicComponent[] = [
       + "Применяется в термометрах, системах отопления, кондиционерах и умных устройствах. "
       + "Пример: в холодильнике датчик температуры контролирует охлаждение, чтобы продукты не испортились.",
     image: image,
-    backgroundColor: "bg-cyan-100", // Светло-голубой для сенсорных компонентов
+    backgroundColor: "bg-orange-100",
   },
   {
     componentId: 10,
@@ -100,9 +100,10 @@ const electronicComponents: ElectronicComponent[] = [
       + "Используется в будильниках, игрушках, компьютерах и сигнализациях. "
       + "Пример: звуковой сигнал на микроволновке, когда еда готова — это работа пьезоизлучателя.",
     image: image,
-    backgroundColor: "bg-pink-100", // Светло-розовый для звуковых компонентов
+    backgroundColor: "bg-teal-100",
   },
 ];
+
 // Получить все электронные компоненты
 export function getAllElectronicComponents(): ElectronicComponent[] {
   return electronicComponents;
@@ -113,4 +114,8 @@ export function getElectronicComponentById(
   id: number
 ): ElectronicComponent | undefined {
   return electronicComponents.find((component) => component.componentId === id);
+}
+
+export function getComponentsByIds(ids: Number[]): ElectronicComponent[] | undefined {
+  return electronicComponents.filter(component => ids.includes(component.componentId));
 }

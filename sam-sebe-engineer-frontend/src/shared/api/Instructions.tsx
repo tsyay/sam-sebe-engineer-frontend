@@ -2,6 +2,7 @@ import type { Instruction, Step, ElectronicComponent } from "../../entities";
 import { getElectronicComponentById } from "./ElectronicComponents";
 
 import image from "../assets/tempImage.png";
+
 const instructions: Instruction[] = [
   {
     instructionId: 1,
@@ -136,6 +137,11 @@ export function getAllInstructions(): Instruction[] {
 // Получить инструкцию по id
 export function getInstructionById(id: number): Instruction | undefined {
   return instructions.find((instr) => instr.instructionId === id);
+}
+
+
+export function getInstructionsByIds(ids: Number[]): Instruction[] | undefined {
+  return instructions.filter(instr => ids.includes(instr.instructionId));
 }
 
 // Получить шаги инструкции

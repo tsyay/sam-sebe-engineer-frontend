@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Collapsible } from "../../../../shared";
 
 interface QuestionCardProps {
   question: string;
@@ -6,23 +6,14 @@ interface QuestionCardProps {
 }
 
 export const QuestionCard = ({ question, answer }: QuestionCardProps) => {
-  const [visability, setVisablity] = useState(false);
-
-  const handleClick = () => {
-    setVisablity(!visability);
-  };
-
   return (
-    <div
+    <Collapsible
       className="w-3/4 h-fit p-4 bg-white flex flex-col mx-auto rounded-[30px] gap-3 drop-shadow-md"
-      onClick={handleClick}
+      title={question}
     >
-      <div>
-        <p className="text-[32px] font-medium">{question}</p>
-      </div>
-      <div className={`${visability ? "flex" : "hidden"}`}>
-        <p className="text-[24px] leading-[24px] font-light text-justify">{answer}</p>
-      </div>
-    </div>
+      <p className="text-[24px] leading-[24px] font-light text-justify">
+        {answer}
+      </p>
+    </Collapsible>
   );
 };
