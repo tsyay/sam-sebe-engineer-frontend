@@ -13,7 +13,10 @@ export const InstructionPage = () => {
       <PageLayout>
         <PageLayout.Main>
           <PageLayout.Section>
-            <InstructionViewer instruction={instruction} />
+            <PageLayout.Wrap>
+              <h2 className="text-[72px]">{instruction.title}</h2>
+              <InstructionViewer instruction={instruction} />
+            </PageLayout.Wrap>
           </PageLayout.Section>
         </PageLayout.Main>
       </PageLayout>

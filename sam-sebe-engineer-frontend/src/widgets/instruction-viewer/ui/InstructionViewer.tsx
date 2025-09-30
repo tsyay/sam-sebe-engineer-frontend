@@ -43,8 +43,7 @@ export const InstructionViewer = ({ instruction }: InstructionViewerProps) => {
   };
 
   return (
-    <div className="w-full h-full mt-[80px] mb-[40px] drop-shadow-lg bg-white p-6 rounded-[30px]">
-      <h2 className="text-[48px] font-bold mb-8">{instruction.title}</h2>
+    <div className="w-full h-full">
       <StepView step={instruction.steps[step]} />
 
       <div className="flex flex-row justify-center gap-3 mt-6">

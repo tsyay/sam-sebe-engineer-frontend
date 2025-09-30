@@ -36,3 +36,11 @@ PageLayout.Section = ({ children, className = '' }: { children: ReactNode; class
     </Container>
   </section>
 );
+
+PageLayout.Wrap = ({ children, className = '' }: { children: ReactNode; className?: string }) => (
+  <section className={`w-full mt-[80px] mb-[40px] drop-shadow-lg bg-white p-6 rounded-[30px]`}>
+    <Container>
+      {children}
+    </Container>
+  </section>
+);

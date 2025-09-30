@@ -6,7 +6,10 @@ export const KitsPage = () => {
     <PageLayout>
       <PageLayout.Main>
         <PageLayout.Section>
-          <Kits />
+          <PageLayout.Wrap>
+            <h2 className="text-[72px]">Наборы</h2>
+            <Kits />
+          </PageLayout.Wrap>
         </PageLayout.Section>
       </PageLayout.Main>
     </PageLayout>

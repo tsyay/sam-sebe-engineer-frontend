@@ -5,7 +5,10 @@ export const InstructionsListPage = () => {
     <PageLayout>
       <PageLayout.Main>
         <PageLayout.Section>
-          <InstructionsList />
+          <PageLayout.Wrap>
+            <h2 className="text-[72px]">Инструкции</h2>
+            <InstructionsList />
+          </PageLayout.Wrap>
         </PageLayout.Section>
       </PageLayout.Main>
     </PageLayout>

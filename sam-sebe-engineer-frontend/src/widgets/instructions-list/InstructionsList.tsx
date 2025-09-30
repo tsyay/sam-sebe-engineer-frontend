@@ -22,8 +22,7 @@ export const InstructionsList = ({ instructions }: InstructionsListProps) => {
   const dataToRender = instructions ?? fetchedInstructions;
 
   return (
-    <div className="w-full h-full mt-[80px] mb-[40px] drop-shadow-lg bg-white p-6 rounded-[30px]">
-      <h2 className="text-[48px] font-bold mb-8">Инструкции</h2>
+    <div className="w-full h-full ">
       <div className="grid grid-cols-3 gap-3">
         {dataToRender.map((instruction, index) => (
           <InstructionCard key={index} instruction={instruction} />
