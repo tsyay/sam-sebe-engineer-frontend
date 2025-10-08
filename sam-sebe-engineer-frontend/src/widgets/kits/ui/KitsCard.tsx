@@ -1,6 +1,6 @@
 import { useInstructions } from "../../../entities/instruction";
 import type { Kit } from "../../../entities/kit";
-import { useComponents } from "../../../entities/kit/model/hooks/useComponentsIds";
+import { useComponents } from "../../../entities/kit/hooks/useComponentsIds";
 import { Collapsible } from "../../../shared";
 import { ComponentList } from "../../component-list";
 import { InstructionsList } from "../../instructions-list";
