@@ -1,121 +1,32 @@
-import type { ElectronicComponent } from "../../entities/component/ElectronicComponent";
-import image from "../assets/tempImage.png";
+import type { ElectronicComponent } from "../../entities/component/model/ElectronicComponent";
 
-const electronicComponents: ElectronicComponent[] = [
-  {
-    componentId: 1,
-    title: "Резистор",
-    description:
-      "Резистор — это пассивный элемент, который ограничивает силу тока в электрической цепи. "
-      + "Применяется для защиты компонентов от перегрузки, создания делителей напряжения и настройки рабочих режимов. "
-      + "Пример: резистор используется для ограничения тока, подаваемого на светодиод, чтобы он не перегорел.",
-    image: image,
-    backgroundColor: "bg-amber-100",
-  },
-  {
-    componentId: 2,
-    title: "Конденсатор",
-    description:
-      "Конденсатор накапливает и хранит электрический заряд, а затем может его быстро отдавать. "
-      + "Используется для сглаживания напряжения в блоках питания, фильтрации помех в радиотехнике и в генераторах сигналов. "
-      + "Пример: в зарядных устройствах конденсатор убирает перепады напряжения, делая питание стабильным.",
-    image: image,
-    backgroundColor: "bg-blue-100",
-  },
-  {
-    componentId: 3,
-    title: "Светодиод (LED)",
-    description:
-      "Светодиод — это полупроводниковый прибор, который излучает свет при прохождении через него электрического тока. "
-      + "Применяется как индикатор, подсветка или источник освещения. "
-      + "Пример: в пульте телевизора используется инфракрасный светодиод для передачи сигнала, а в гирляндах — разноцветные светодиоды для декора.",
-    image: image,
-    backgroundColor: "bg-red-100",
-  },
-  {
-    componentId: 4,
-    title: "Транзистор",
-    description:
-      "Транзистор — это полупроводниковый прибор, который может работать как электронный переключатель или усилитель. "
-      + "Применяется в микросхемах, радиоприемниках, усилителях звука и компьютерах. "
-      + "Пример: транзисторы в процессоре выполняют миллионы переключений в секунду, обрабатывая информацию.",
-    image: image,
-    backgroundColor: "bg-green-100",
-  },
-  {
-    componentId: 5,
-    title: "Диод",
-    description:
-      "Диод пропускает ток только в одном направлении и блокирует его в обратном. "
-      + "Используется для защиты цепей, выпрямления переменного тока в постоянный, а также в различных датчиках. "
-      + "Пример: в зарядном устройстве для телефона диоды превращают переменный ток из розетки в постоянный.",
-    image: image,
-    backgroundColor: "bg-purple-100",
-  },
-  {
-    componentId: 6,
-    title: "Микроконтроллер",
-    description:
-      "Микроконтроллер — это мини-компьютер на одном чипе, в котором есть процессор, память и порты ввода-вывода. "
-      + "Применяется для управления роботами, бытовыми приборами, автомобилями и игрушками. "
-      + "Пример: в Arduino микроконтроллер управляет датчиками, двигателями и дисплеями в различных проектах.",
-    image: image,
-    backgroundColor: "bg-indigo-100",
-  },
-  {
-    componentId: 7,
-    title: "Кнопка",
-    description:
-      "Кнопка — это механический переключатель, который замыкает или размыкает электрическую цепь при нажатии. "
-      + "Используется для включения и выключения устройств, подачи управляющих сигналов. "
-      + "Пример: кнопка используется в звонке, чтобы замыкать цепь и включать звук.",
-    image: image,
-    backgroundColor: "bg-pink-100",
-  },
-  {
-    componentId: 8,
-    title: "Потенциометр",
-    description:
-      "Потенциометр — это переменный резистор, у которого сопротивление можно регулировать вручную. "
-      + "Применяется для настройки громкости, яркости или чувствительности устройств. "
-      + "Пример: ручка регулировки громкости на колонке — это потенциометр.",
-    image: image,
-    backgroundColor: "bg-yellow-100",
-  },
-  {
-    componentId: 9,
-    title: "Датчик температуры",
-    description:
-      "Датчик температуры измеряет температуру окружающей среды и преобразует её в электрический сигнал. "
-      + "Применяется в термометрах, системах отопления, кондиционерах и умных устройствах. "
-      + "Пример: в холодильнике датчик температуры контролирует охлаждение, чтобы продукты не испортились.",
-    image: image,
-    backgroundColor: "bg-orange-100",
-  },
-  {
-    componentId: 10,
-    title: "Звуковой пьезоизлучатель",
-    description:
-      "Пьезоизлучатель преобразует электрический сигнал в звук или писк. "
-      + "Используется в будильниках, игрушках, компьютерах и сигнализациях. "
-      + "Пример: звуковой сигнал на микроволновке, когда еда готова — это работа пьезоизлучателя.",
-    image: image,
-    backgroundColor: "bg-teal-100",
-  },
-];
+const API_BASE_URL = 'http://localhost:3001/api';
 
-// Получить все электронные компоненты
-export function getAllElectronicComponents(): ElectronicComponent[] {
-  return electronicComponents;
-}
+export const componentsApi = {
+  // Получить все электронные компоненты
+  async getAllElectronicComponent(): Promise<ElectronicComponent[]> {
+    const response = await fetch(`${API_BASE_URL}/components`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch components');
+    }
+    return response.json();
+  },
 
-// Получить электронный компонент по id
-export function getElectronicComponentById(
-  id: number
-): ElectronicComponent | undefined {
-  return electronicComponents.find((component) => component.componentId === id);
-}
+  // Получить электронный компонент по id
+  async getElectronicComponentById(id: number): Promise<ElectronicComponent> {
+    const response = await fetch(`${API_BASE_URL}/components/${id}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch component');
+    }
+    return response.json();
+  },
 
-export function getComponentsByIds(ids: Number[]): ElectronicComponent[] | undefined {
-  return electronicComponents.filter(component => ids.includes(component.componentId));
-}
+  // Получить компоненты по массиву id
+  async getElectronicComponentByIds(ids: number[]): Promise<ElectronicComponent[]> {
+    const response = await fetch(`${API_BASE_URL}/components/by-ids/${ids.join(',')}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch components');
+    }
+    return response.json();
+  }
+};

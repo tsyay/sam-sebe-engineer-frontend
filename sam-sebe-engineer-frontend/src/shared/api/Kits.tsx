@@ -1,5 +1,5 @@
 import KitImage from "../assets/tempImage.png";
-import type { Kit } from "../../entities/Kit";
+import type { Kit } from "../../entities/kit";
 
 const kits = [
   {
