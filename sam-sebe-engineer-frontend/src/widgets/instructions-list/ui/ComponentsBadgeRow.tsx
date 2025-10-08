@@ -1,8 +1,8 @@
-import type { ElectronicComponent } from "../../../entities";
+import type { Component } from "../../../entities";
 import {SmallBadge} from '../../../shared'
 
 interface ComponentBadgeRowProps{
-    components: ElectronicComponent[]
+    components: Component[]
 }
 
 export const ComponentBadgeRow = ({components} : ComponentBadgeRowProps) => {

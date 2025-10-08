@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Instruction } from "../../entities";
-import { getAllInstructions } from "../../shared";
+import { instructionApi } from "../../entities";
 import { InstructionCard } from "./ui/InstructionCard/InstructionCard";
 
 interface InstructionsListProps {
@@ -8,14 +8,13 @@ interface InstructionsListProps {
 }
 
 export const InstructionsList = ({ instructions }: InstructionsListProps) => {
-  const [fetchedInstructions, setFetchedInstructions] = useState<Instruction[]>(
-    []
-  );
+  const [fetchedInstructions, setFetchedInstructions] = useState<Instruction[]>([]);
 
   useEffect(() => {
     if (!instructions) {
-      const allInstructions = getAllInstructions();
-      setFetchedInstructions(allInstructions);
+      instructionApi.getAll().then((allInstructions) => {
+        setFetchedInstructions(allInstructions);
+      });
     }
   }, [instructions]);
 

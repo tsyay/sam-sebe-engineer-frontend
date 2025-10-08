@@ -1,2 +1,2 @@
-export type { Kit, KitId, ComponentId, InstructionId } from "./model/types";
+export type { Kit, KitId } from "./model/types";
 export { kitApi } from "./api/kitApi";

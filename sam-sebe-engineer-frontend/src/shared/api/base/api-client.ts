@@ -1,13 +1,13 @@
 import axios from "axios";
 import type { AxiosInstance, AxiosRequestConfig } from "axios";
-import { setupInterceptors } from './interceptors';
+import { setupInterceptors } from "./interceptors";
 
 class ApiClient {
   private client: AxiosInstance;
 
   constructor() {
     this.client = axios.create({
-      baseURL: import.meta.env.BASE_URL,
+      baseURL: "http://localhost:3001/api",
       timeout: 10000,
       headers: {
         "Content-Type": "application/json",

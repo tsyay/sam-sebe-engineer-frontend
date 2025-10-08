@@ -1,12 +1,17 @@
 import { PageLayout } from "../../shared/layouts/PageLayout";
 import { InstructionViewer } from "../../widgets/instruction-viewer/ui/InstructionViewer";
 import { useParams, Navigate } from "react-router";
-import { getInstructionById } from "../../widgets/instruction-viewer/api/InstructionsMockups";
-
+import { instructionApi, type Instruction } from "../../entities";
+import { useEffect, useState } from "react";
 export const InstructionPage = () => {
   const params = useParams<{ id: string }>();
   const instructionId = Number(params.id);
-  const instruction = getInstructionById(instructionId);
+  const [instruction, setInstruction] = useState<Instruction>();
+  useEffect(() => {
+    instructionApi.getById(instructionId).then((instruction) => {
+      setInstruction(instruction);
+    });
+  }, [instructionId]);
   if (!instruction) return <Navigate to="/404" replace />;
   return (
     <>

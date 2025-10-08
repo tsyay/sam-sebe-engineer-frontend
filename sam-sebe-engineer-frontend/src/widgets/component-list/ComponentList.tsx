@@ -1,21 +1,20 @@
-import type { ElectronicComponent } from "../../entities";
-import { getAllElectronicComponents } from "../../shared";
+import type { Component } from "../../entities";
+import { componentApi } from "../../entities/component";
 import { ComponentCard } from "./ui";
 import { useState, useEffect } from "react";
 
 interface ComponentListProps {
-  components: ElectronicComponent[] | undefined;
+  components: Component[];
 }
 
 export const ComponentList = ({ components }: ComponentListProps) => {
-  const [fetchedComponents, setFetchedComponents] = useState<
-    ElectronicComponent[]
-  >([]);
+  const [fetchedComponents, setFetchedComponents] = useState<Component[]>([]);
 
   useEffect(() => {
     if (!components) {
-      const allComponents = getAllElectronicComponents();
-      setFetchedComponents(allComponents);
+      componentApi.getAll().then((allComponents) => {
+        setFetchedComponents(allComponents);
+      });
     }
   }, [components]);
 

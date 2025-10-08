@@ -1,9 +1,16 @@
 import { KitsCard } from "./ui";
-import { getAllKits } from "../../shared";
+import { kitApi } from "../../entities";
+import type { Kit } from "../../entities";
+import { useEffect, useState } from "react";
 
 export const Kits = () => {
+  const [kits, setKits] = useState<Kit[]>([]);
 
-  const kits = getAllKits();
+  useEffect(() => {
+    kitApi.getAll().then((allKits) => {
+      setKits(allKits);
+    });
+  }, []);
 
   return (
     <div className="py-[64px] flex flex-col gap-3">

@@ -1,7 +1,7 @@
-import type { ElectronicComponent } from "../../entities"
+import type { Component } from "../../entities"
 
 interface ElectronicComponentViewerProps{
-    component: ElectronicComponent
+    component: Component
 }
 
 export const ElectronicComponentViewer = ({component} : ElectronicComponentViewerProps) => {

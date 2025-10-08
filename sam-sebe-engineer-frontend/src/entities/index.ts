@@ -1,2 +1,3 @@
-export type { Instruction, Step } from "./instruction";
-export type { ElectronicComponent } from "./component";
+export * from "./component"
+export * from "./instruction"
+export * from "./kit"
