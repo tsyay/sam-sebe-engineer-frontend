@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { Kit } from "../../../entities/kit";
-import { Collapsible } from "../../../shared";
+import { Collapsible, getImageUrl } from "../../../shared";
 import { ComponentList } from "../../component-list";
 import { InstructionsList } from "../../instructions-list";
 import {
@@ -44,7 +44,7 @@ export const KitsCard = ({ kit }: KitsCardProps) => {
           </p>
         </div>
         <div className="flex-1 flex justify-center">
-          <img className="max-h-[440px]" src={kit.images[0]} />
+          <img className="max-h-[440px]" src={getImageUrl(kit.images[0])} />
         </div>
       </div>
       <div>

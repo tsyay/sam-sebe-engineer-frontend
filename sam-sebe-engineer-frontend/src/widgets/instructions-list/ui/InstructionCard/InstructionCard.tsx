@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import type { Instruction } from "../../../../entities";
 import { useComponents } from "../../../../entities";
 import { ComponentBadgeRow } from "../ComponentsBadgeRow";
+import { getImageUrl } from "../../../../shared";
 
 interface InstructionCardProps {
   instruction: Instruction;
@@ -19,7 +20,7 @@ export const InstructionCard = ({ instruction }: InstructionCardProps) => {
       className="flex flex-col gap-1"
     >
       <img
-        src={instruction.previewImage}
+        src={getImageUrl(instruction.previewImage)}
         className="h-[256px] object-contain"
       />
       <h3 className="text-[24px]">{instruction.title}</h3>

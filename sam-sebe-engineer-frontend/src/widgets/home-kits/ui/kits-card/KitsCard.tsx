@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { useState } from "react";
-import { useRandom } from "../../../../shared";
+import { getImageUrl, useRandom } from "../../../../shared";
 
 interface KitsCardProps {
   title: string;
@@ -28,7 +28,7 @@ export const KitsCard = ({ title, description, image }: KitsCardProps) => {
         initial={{ y: 300, opacity: 0 }}
         whileInView={{ y: 50, opacity: 1 }}
         transition={{ duration: 0.6, type: "spring" }}
-        src={image}
+        src={getImageUrl(image)}
         alt={title}
         viewport={{ once: true }}
         className="h-3/4 object-contain mb-4"

@@ -1,4 +1,5 @@
 import type { Component } from "../../entities"
+import { getImageUrl } from "../../shared"
 
 interface ElectronicComponentViewerProps{
     component: Component
@@ -12,7 +13,7 @@ export const ElectronicComponentViewer = ({component} : ElectronicComponentViewe
                 <p className="text-[24px] font-light text-justify">{component.description}</p>
             </div>
             <div className="flex-1">
-                <img src={component.image} className="w-full h-full object-cover"/>
+                <img src={getImageUrl(component.image)} className="w-full h-full object-cover"/>
             </div>
         </div>
     )
