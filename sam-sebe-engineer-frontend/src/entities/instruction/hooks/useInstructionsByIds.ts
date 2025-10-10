@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { instructionApi } from "../api/instructionApi";
 
-export const useInstructions = (ids: number[]) => {
+export const useInstructionsByIds = (ids: number[]) => {
   return useQuery({
     queryKey: ["instructions", ids],
     queryFn: () => instructionApi.getById,
