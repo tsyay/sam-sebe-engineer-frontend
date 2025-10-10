@@ -1,15 +1,11 @@
 import { KitsCard } from "./ui";
-import { kitApi, type Kit } from "../../entities";
-import { useEffect, useState } from "react";
+import { useKits} from "../../entities";
 
 export const Kits = () => {
-  const [kits, setKits] = useState<Kit[]>([]);
+  const { data: kits = [], isLoading, error } = useKits()
 
-  useEffect(() => {
-    kitApi.getAll().then((allKits) => {
-      setKits(allKits);
-    });
-  }, []);
+  if (isLoading) return <p>Загрузка...</p>
+  if (error) return <p>Ошибка загрузки 😢</p>
 
   return (
     <div className="w-full h-full">

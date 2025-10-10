@@ -3,24 +3,36 @@ import type { Kit } from "../../../entities/kit";
 import { Collapsible } from "../../../shared";
 import { ComponentList } from "../../component-list";
 import { InstructionsList } from "../../instructions-list";
-import { componentApi, instructionApi, type Component, type Instruction } from "../../../entities";
+import {
+  componentApi,
+  instructionApi,
+  useComponents,
+  useInstructions,
+  type Component,
+  type Instruction,
+} from "../../../entities";
+import { Navigate } from "react-router";
 
 interface KitsCardProps {
   kit: Kit;
 }
 
 export const KitsCard = ({ kit }: KitsCardProps) => {
-  const [instructions, setInstructions] = useState<Instruction[]>([]);
+  const {
+    data: instructions = [],
+    isLoading: isInstructionsLoading,
+    error: instructiinsError,
+  } = useInstructions();
+  const {
+    data: components = [],
+    isLoading: isComponentsLoading,
+    error: componentsError,
+  } = useComponents();
 
-  instructionApi.getAll().then((allInstructions) => {
-    setInstructions(allInstructions);
-  });
+  if (isInstructionsLoading || isComponentsLoading) return <p>Загрузка...</p>;
+  if (instructiinsError || componentsError) return <p>Ошибка загрузки 😢</p>;
 
-  const [components, setComponents] = useState<Component[]>([]);
-
-  componentApi.getAll().then((allComponents) => {
-    setComponents(allComponents);
-  });
+  if (!components || !instructions) return <Navigate to="/404" replace />;
 
   return (
     <div className="flex flex-col gap-3">

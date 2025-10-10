@@ -1,19 +1,17 @@
 import { Link } from "react-router";
-import type { Instruction, Component } from "../../../../entities";
-import { componentApi } from "../../../../entities";
+import type { Instruction } from "../../../../entities";
+import { useComponents } from "../../../../entities";
 import { ComponentBadgeRow } from "../ComponentsBadgeRow";
-import { useState } from "react";
 
 interface InstructionCardProps {
   instruction: Instruction;
 }
 
 export const InstructionCard = ({ instruction }: InstructionCardProps) => {
-  const [components, setComponents] = useState<Component[]>();
+  const { data: components = [], isLoading, error } = useComponents();
 
-  componentApi.getAll().then((allComponents) => {
-    setComponents(allComponents);
-  });
+  if (isLoading) return <p>Загрузка...</p>;
+  if (error) return <p>Ошибка загрузки 😢</p>;
 
   return (
     <Link

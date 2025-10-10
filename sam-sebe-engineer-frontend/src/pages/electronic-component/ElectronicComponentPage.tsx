@@ -1,18 +1,21 @@
 import { Navigate, useParams } from "react-router";
 import { PageLayout } from "../../shared/layouts/PageLayout";
 import { ElectronicComponentViewer } from "../../widgets";
-import { type Component, componentApi } from "../../entities";
-import { useState } from "react";
+import { useComponent } from "../../entities";
 
 export const ElectronicComponentPage = () => {
   const params = useParams<{ id: string }>();
   const componentId = Number(params.id);
-  
-  const [component, setCompoenet] = useState<Component>();
 
-  componentApi.getById(componentId).then((fetchedComponent) => {
-    setCompoenet(fetchedComponent)
-  })
+  const {
+    data: component,
+    isLoading,
+    error,
+    refetch,
+  } = useComponent(componentId);
+
+  if (isLoading) return <p>Загрузка...</p>;
+  if (error) return <p>Ошибка загрузки данных 😢</p>;
 
   if (!component) return <Navigate to="/404" replace />;
   return (

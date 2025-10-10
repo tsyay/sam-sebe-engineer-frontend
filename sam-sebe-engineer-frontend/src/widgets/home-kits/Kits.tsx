@@ -1,17 +1,13 @@
 import { KitsCard } from "./ui";
-import { kitApi } from "../../entities";
-import type { Kit } from "../../entities";
-import { useEffect, useState } from "react";
+import { kitApi, useKits } from "../../entities";
+import { Navigate } from "react-router";
 
 export const Kits = () => {
-  const [kits, setKits] = useState<Kit[]>([]);
+  const { data: kits, isLoading, error, refetch } = useKits();
 
-  useEffect(() => {
-    kitApi.getAll().then((allKits) => {
-      setKits(allKits);
-    });
-  }, []);
-
+  if (isLoading) return <p>Загрузка...</p>;
+  if (error) return <p>Ошибка загрузки данных 😢</p>;
+  if (!kits) return <Navigate to="/404" replace />;
   return (
     <div className="py-[64px] flex flex-col gap-3">
       <h2 className="text-[72px]">Наборы</h2>
