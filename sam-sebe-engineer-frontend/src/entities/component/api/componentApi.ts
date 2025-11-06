@@ -5,7 +5,6 @@ import { mapComponent } from "../lib/mapComponent";
 
 export const componentApi = {
   async getAll(): Promise<Component[]> {
-    console.log("aaaa");
     const data = await apiClient.get<ComponentDto[]>("/components");
     return data.map(mapComponent);
   },

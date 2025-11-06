@@ -1,6 +1,5 @@
 import axios from "axios";
 import type { AxiosInstance, AxiosRequestConfig } from "axios";
-import { setupInterceptors } from "./interceptors";
 
 class ApiClient {
   private client: AxiosInstance;
@@ -13,8 +12,6 @@ class ApiClient {
         "Content-Type": "application/json",
       },
     });
-
-    setupInterceptors(this.client);
   }
 
   async get<T>(url: string, config?: AxiosRequestConfig): Promise<T> {

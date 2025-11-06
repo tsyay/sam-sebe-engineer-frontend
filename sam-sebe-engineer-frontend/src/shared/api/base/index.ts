@@ -1,2 +1,2 @@
 export * from "./api-client";
-export * from "./apiUpload"
+export * from "./upload-api"
