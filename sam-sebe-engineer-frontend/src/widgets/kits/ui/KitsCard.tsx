@@ -44,7 +44,7 @@ export const KitsCard = ({ kit }: KitsCardProps) => {
           </p>
         </div>
         <div className="flex-1 flex justify-center">
-          <img className="max-h-[440px]" src={getImageUrl(kit.images[0])} />
+          <img className="max-h-[440px]" src={kit.images} />
         </div>
       </div>
       <div>

@@ -4,8 +4,8 @@ import type {
   InstructionId,
   Kit,
   KitId,
-  Url,
 } from "../model/types";
+import { makeUrl } from "../../../shared";
 
 export function mapKit(dto: KitDto): Kit {
   return {
@@ -13,7 +13,7 @@ export function mapKit(dto: KitDto): Kit {
     title: dto.title,
     description: dto.description,
     shortDescription: dto.shortDescription,
-    images: dto.images as Url,
+    images: makeUrl(dto.images[0]),
     componentIds: dto.componentIds as ComponentId[],
     instructionIds: dto.instructionIds as InstructionId[],
   };

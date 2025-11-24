@@ -1,5 +1,5 @@
+import type { Url } from "../../../shared" 
 export type KitId = Brand<number, 'KitId'>
-export type Url = string & { __brand: 'Url' }
 export type ComponentId = Brand<number, 'ComponentId'>
 export type InstructionId = Brand<number, 'InstructionId'>
 

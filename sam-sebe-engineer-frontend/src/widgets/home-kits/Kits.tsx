@@ -17,7 +17,7 @@ export const Kits = () => {
             key={index}
             title={kit.title}
             description={kit.shortDescription}
-            image={kit.images[0]}
+            image={kit.images}
           />
         ))}
       </div>

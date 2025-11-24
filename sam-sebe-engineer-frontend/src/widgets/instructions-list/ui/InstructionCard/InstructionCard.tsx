@@ -20,7 +20,7 @@ export const InstructionCard = ({ instruction }: InstructionCardProps) => {
       className="flex flex-col gap-1"
     >
       <img
-        src={getImageUrl(instruction.previewImage)}
+        src={instruction.previewImage}
         className="h-[256px] object-contain"
       />
       <h3 className="text-[24px]">{instruction.title}</h3>
