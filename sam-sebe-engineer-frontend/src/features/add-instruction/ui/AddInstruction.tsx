@@ -4,9 +4,13 @@ import { useState } from "react";
 import { FileInputWithPreview } from "../../../shared/ui";
 import { Button } from "../../../shared/ui/buttons";
 import { instructionApi } from "../../../entities/instruction";
-import type { Instruction, InstructionId, Step, StepId } from "../../../entities/instruction/model/types";
+import type {
+  Instruction,
+  InstructionId,
+  Step,
+  StepId,
+} from "../../../entities/instruction/model/types";
 
-// Объявляем типы формы
 type StepForm = {
   title: string;
   description: string;
@@ -21,15 +25,16 @@ type InstructionForm = {
 };
 
 export const AddInstruction = () => {
-  const { register, control, handleSubmit, setValue, watch, reset } = useForm<InstructionForm>({
-    defaultValues: {
-      title: "",
-      description: "",
-      steps: [],
-      image: null
-    }
-  });
-  
+  const { register, control, handleSubmit, setValue, watch, reset } =
+    useForm<InstructionForm>({
+      defaultValues: {
+        title: "",
+        description: "",
+        steps: [],
+        image: null,
+      },
+    });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { fields, append, remove } = useFieldArray({
     control,
@@ -39,54 +44,46 @@ export const AddInstruction = () => {
   const instructionImage = watch("image");
 
   const onSubmit = async (data: InstructionForm) => {
-  setIsSubmitting(true);
-  
-  try {
-    console.log('🚀 Starting instruction creation via entity...');
+    setIsSubmitting(true);
 
-    // Создаем временные ID с брендингом
-    const tempInstructionId = 0 as InstructionId;
-    const tempStepId = 0 as StepId;
+    try {
+      const tempInstructionId = 0 as InstructionId;
+      const tempStepId = 0 as StepId;
 
-    // Создаем объект Instruction для entity слоя
-    const instructionData: Instruction = {
-      instructionId: tempInstructionId,
-      title: data.title,
-      description: data.description,
-      previewImage: '' as any,
-      steps: data.steps.map((step, index): Step => ({
-        stepId: tempStepId,
-        title: step.title,
-        description: step.description,
-        image: '' as any,
-        instructionId: tempInstructionId
-      })),
-      componentIds: []
-    };
+      const instructionData: Instruction = {
+        instructionId: tempInstructionId,
+        title: data.title,
+        description: data.description,
+        previewImage: "" as any,
+        steps: data.steps.map(
+          (step): Step => ({
+            stepId: tempStepId,
+            title: step.title,
+            description: step.description,
+            image: "" as any,
+            instructionId: tempInstructionId,
+          })
+        ),
+        componentIds: [],
+      };
 
-    console.log('📦 Prepared instruction data for entity:', instructionData);
+      const stepFiles = data.steps.map((step) => step.image);
 
-    // ✅ ИСПРАВЛЕНО: Проверяем что файл не null
-    const createdInstruction = await instructionApi.create(
-      instructionData, 
-      data.image || undefined // преобразуем null в undefined
-    );
+      await instructionApi.create(
+        instructionData,
+        data.image || undefined,
+        stepFiles
+      );
 
-    console.log('✅ Instruction created via entity:', createdInstruction);
-    
-    // Сбрасываем форму после успешного создания
-    reset();
-    setValue('image', null);
-    
-    alert('✅ Инструкция успешно создана!');
-
-  } catch (error: any) {
-    console.error('❌ Error creating instruction via entity:', error);
-    alert(`❌ Ошибка при создании инструкции: ${error.message}`);
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+      reset();
+      setValue("image", null);
+      alert("✅ Инструкция успешно создана!");
+    } catch (error: any) {
+      alert(`❌ Ошибка при создании инструкции: ${error.message}`);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const handleInstructionFileChange = (file: File | null) => {
     setValue("image", file);
@@ -102,7 +99,7 @@ export const AddInstruction = () => {
       onSubmit={handleSubmit(onSubmit)}
     >
       <h2 className="text-[48px] font-bold">Создание инструкции</h2>
-      
+
       <div className="w-full h-[444px] flex flex-row gap-3">
         <div className="h-full flex-1 flex flex-col gap-3">
           <p className="text-[24px]">Название инструкции</p>
@@ -121,6 +118,7 @@ export const AddInstruction = () => {
             placeholder="Введите описание инструкции"
           />
         </div>
+
         <div className="w-full h-full flex-1">
           <FileInputWithPreview
             file={instructionImage}
@@ -129,46 +127,56 @@ export const AddInstruction = () => {
         </div>
       </div>
 
-      {fields.map((field, index) => (
-        <div
-          className="w-full h-[444px] flex flex-col rounded-[30px] bg-white drop-shadow-lg p-4"
-          key={field.id}
-        >
-          <p className="text-[24px]">Шаг №{index + 1}</p>
-          <div className="w-full h-full flex flex-row gap-3 overflow-hidden">
-            <div className="flex-1 flex flex-col gap-3">
-              <p className="text-[18px] font-light">Название шага</p>
-              <input
-                className="w-full bg-white drop-shadow-lg rounded-[30px] p-4 z-1"
-                type="text"
-                {...register(`steps.${index}.title`, { required: true })}
-                placeholder="Введите название шага"
-              />
-              <p className="text-[18px] font-light">Описание</p>
-              <TextareaAutosize
-                {...register(`steps.${index}.description`, { required: true })}
-                minRows={10}
-                maxRows={10}
-                className="w-full bg-white rounded-[30px] p-4"
-                placeholder="Опишите данный шаг"
-              />
-            </div>
-            <div className="flex-1 h-full">
-              <FileInputWithPreview
-                file={watch(`steps.${index}.image`)}
-                onFileChange={(file) => handleStepFileChange(index, file)}
-              />
-            </div>
-          </div>
-          <Button
-            type="button"
-            onClick={() => remove(index)}
-            className="mt-2 self-end"
+      {fields.map((field, index) => {
+        const stepImage = watch(`steps.${index}.image`);
+
+        return (
+          <div
+            className="w-full h-[444px] flex flex-col rounded-[30px] bg-white drop-shadow-lg p-4"
+            key={field.id}
           >
-            Удалить шаг
-          </Button>
-        </div>
-      ))}
+            <p className="text-[24px]">Шаг №{index + 1}</p>
+
+            <div className="w-full h-full flex flex-row gap-3 overflow-hidden">
+              <div className="flex-1 flex flex-col gap-3">
+                <p className="text-[18px] font-light">Название шага</p>
+                <input
+                  className="w-full bg-white drop-shadow-lg rounded-[30px] p-4"
+                  type="text"
+                  {...register(`steps.${index}.title`, { required: true })}
+                  placeholder="Введите название шага"
+                />
+
+                <p className="text-[18px] font-light">Описание</p>
+                <TextareaAutosize
+                  {...register(`steps.${index}.description`, {
+                    required: true,
+                  })}
+                  minRows={10}
+                  maxRows={10}
+                  className="w-full bg-white rounded-[30px] p-4"
+                  placeholder="Опишите данный шаг"
+                />
+              </div>
+
+              <div className="flex-1 h-full">
+                <FileInputWithPreview
+                  file={stepImage}
+                  onFileChange={(file) => handleStepFileChange(index, file)}
+                />
+              </div>
+            </div>
+
+            <Button
+              type="button"
+              onClick={() => remove(index)}
+              className="mt-2 self-end"
+            >
+              Удалить шаг
+            </Button>
+          </div>
+        );
+      })}
 
       <Button
         type="button"
@@ -178,11 +186,7 @@ export const AddInstruction = () => {
         Добавить шаг
       </Button>
 
-      <Button 
-        className="w-full" 
-        type="submit"
-        disabled={isSubmitting}
-      >
+      <Button className="w-full" type="submit" disabled={isSubmitting}>
         {isSubmitting ? "🔄 Сохранение..." : "💾 Сохранить инструкцию"}
       </Button>
     </form>

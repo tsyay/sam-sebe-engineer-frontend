@@ -4,16 +4,17 @@ import type {
   Instruction,
 } from "../model/Instruction";
 import type { InstructionDto } from "../api/types";
-import type { Step } from "../model/Step";
-import { makeUrl } from "../../../shared";
+import { makeUrl, type Url } from "../../../shared";
+import { mapStep } from "./mapStep";
 
 export function mapInstruction(dto: InstructionDto): Instruction {
+  console.log(dto.steps)
   return {
     instructionId: dto.instructionId as InstructionId,
     title: dto.title,
     description: dto.description,
     componentIds: dto.componentIds as ComponentId[],
     previewImage: dto.previewImage ? makeUrl(dto.previewImage) : undefined,
-    steps: dto.steps as Step[],
+    steps: dto.steps.map(mapStep),
   };
 }

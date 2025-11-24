@@ -27,30 +27,54 @@ export const instructionApi = {
     return data.map(mapStep);
   },
 
-  async create(instruction: Instruction, file?: File): Promise<Instruction> {
-    // Конвертируем в DTO
-    const dto: InstructionCreateDto = {
-      title: instruction.title,
-      description: instruction.description,
-      previewImage: instruction.previewImage as string || '', // ✅ ИСПРАВЛЕНО: гарантируем строку
-      steps: instruction.steps.map((step, index): StepCreateDto => ({
-        title: step.title,
-        description: step.description,
-        order: index + 1,
-        image: step.image as string || '' // ✅ ИСПРАВЛЕНО: гарантируем строку
-      })),
-      componentIds: instruction.componentIds || []
-    };
+  async create(
+  instruction: Instruction,
+  file?: File,
+  stepFiles: (File | null)[] = []
+): Promise<Instruction> {
+  // 1. Загружаем превью (как и раньше)
+  let previewImageUrl = (instruction.previewImage as string) || '';
 
-    // Загружаем изображение если есть
-    if (file) {
-      const uploadResponse = await uploadApi.instructionImage(file);
-      dto.previewImage = uploadResponse.url; // ✅ Теперь точно строка
-    }
+  if (file) {
+    const uploadResponse = await uploadApi.instructionImage(file);
+    previewImageUrl = uploadResponse.url;
+  }
 
-    console.log('📨 Sending instruction DTO to backend:', dto);
-    
-    const response = await apiClient.post<InstructionDto>(`/instructions`, dto);
-    return mapInstruction(response);
-  },
+  // 2. Загружаем картинки шагов
+  //    индекс в stepFiles соответствует индексу в instruction.steps
+  const stepImageUrls: string[] = await Promise.all(
+    instruction.steps.map(async (step, index) => {
+      const stepFile = stepFiles[index];
+
+      // если файла нет — оставляем то, что уже было (строка) или пустую
+      if (!stepFile) {
+        return (step.image as string) || '';
+      }
+
+      // используем тот же uploadApi, что и для превью
+      const uploadResponse = await uploadApi.instructionImage(stepFile);
+      return uploadResponse.url;
+    })
+  );
+
+  // 3. Собираем DTO для бэка
+  const dto: InstructionCreateDto = {
+    title: instruction.title,
+    description: instruction.description,
+    previewImage: previewImageUrl,
+    steps: instruction.steps.map((step, index): StepCreateDto => ({
+      title: step.title,
+      description: step.description,
+      order: index + 1,
+      image: stepImageUrls[index] || '' // тут уже УЖЕ url, а не ""
+    })),
+    componentIds: instruction.componentIds || []
+  };
+
+  console.log('📨 Sending instruction DTO to backend:', dto);
+
+  const response = await apiClient.post<InstructionDto>(`/instructions`, dto);
+  return mapInstruction(response);
+},
+
 };

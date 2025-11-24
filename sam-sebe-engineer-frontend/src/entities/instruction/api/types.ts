@@ -9,7 +9,7 @@ export type InstructionDto = {
 
 export type StepDto = {
   stepId: number;
-  image: string;
+  imageUrl: string;
   title: string;
   description: string;
   instructionId: number;

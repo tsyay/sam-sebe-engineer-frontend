@@ -4,7 +4,7 @@ export type InstructionId = Brand<number, 'InstructionId'>
 
 export interface Step {
   stepId: StepId;
-  image: Url;
+  image?: Url;
   title: string;
   description: string;
   instructionId: InstructionId;
