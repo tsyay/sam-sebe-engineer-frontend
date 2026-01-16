@@ -47,33 +47,16 @@ export const AddInstruction = () => {
     setIsSubmitting(true);
 
     try {
-      const tempInstructionId = 0 as InstructionId;
-      const tempStepId = 0 as StepId;
-
-      const instructionData: Instruction = {
-        instructionId: tempInstructionId,
+      await instructionApi.create({
         title: data.title,
         description: data.description,
-        previewImage: "" as any,
-        steps: data.steps.map(
-          (step): Step => ({
-            stepId: tempStepId,
-            title: step.title,
-            description: step.description,
-            image: "" as any,
-            instructionId: tempInstructionId,
-          })
-        ),
-        componentIds: [],
-      };
-
-      const stepFiles = data.steps.map((step) => step.image);
-
-      await instructionApi.create(
-        instructionData,
-        data.image || undefined,
-        stepFiles
-      );
+        previewFile: data.image,
+        steps: data.steps.map((s) => ({
+          title: s.title,
+          description: s.description,
+          file: s.image,
+        })),
+      });
 
       reset();
       setValue("image", null);

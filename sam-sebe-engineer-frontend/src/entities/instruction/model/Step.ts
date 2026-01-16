@@ -7,5 +7,4 @@ export interface Step {
   image?: Url;
   title: string;
   description: string;
-  instructionId: InstructionId;
 }

@@ -8,11 +8,11 @@ export type InstructionDto = {
 };
 
 export type StepDto = {
-  stepId: number;
-  imageUrl: string;
+  id: number;
   title: string;
   description: string;
-  instructionId: number;
+  image?: string | null;
+  order: number;
 };
 
 export type StepCreateDto = {
@@ -29,3 +29,17 @@ export type InstructionCreateDto = {
   previewImage?: string
   steps: StepCreateDto[]
 }
+
+export type StepCreateInput = {
+  title: string;
+  description: string;
+  file?: File | null;
+};
+
+export type InstructionCreateInput = {
+  title: string;
+  description: string;
+  componentIds?: number[];
+  previewFile?: File | null;
+  steps: StepCreateInput[];
+};
