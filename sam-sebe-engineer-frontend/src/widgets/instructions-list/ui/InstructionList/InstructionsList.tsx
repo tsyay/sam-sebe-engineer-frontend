@@ -1,6 +1,6 @@
-import type { Instruction } from "../../entities";
-import { useInstructions } from "../../entities";
-import { InstructionCard } from "./ui/InstructionCard/InstructionCard";
+import type { Instruction } from "@/entities/instruction";
+import { useInstructions } from "@/entities/instruction";
+import { InstructionCard } from "../../ui/InstructionCard/InstructionCard";
 
 interface InstructionsListProps {
   instructions?: Instruction[];
